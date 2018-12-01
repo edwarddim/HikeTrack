@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TEST</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class='container'>
+        <div>
+            <h1 style='display: inline-block; margin-right:70px;'>"+serverResponse.trails[0]['name']+"</h1>
+            <h5 style='display: inline-block;'>Rating: "+serverResponse.trails[0]['stars']+"</h5>
+        </div>
+        <div>
+            <h3 style='display: inline-block; margin-right:50px;'>Trail Status: "+serverResponse.trails[0]['conditionStatus']+"</h3>
+            <h3 style='display: inline-block;'>Location: "+serverResponse.trails[0]['location']+"
+        </div>
+        <div class='row'>
+            <div class='col'>
+                <table class='table'>
+                    <thead>
+                        <th>HIGH</th>
+                        <th>LOW</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"+serverResponse.trails[0]['high']+" ft</td>
+                            <td>"+serverResponse.trails[0]['low']+" ft</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class='col'>
+                <table class='table'>
+                    <thead>
+                        <th>ASCENT</th>
+                        <th>DESCENT</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"+serverResponse.trails[0]['ascent']+" ft</td>
+                            <td>"+serverResponse.trails[0]['descent']+" ft</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h2>Details</h2>
+            <h6>serverResponse.trails[0]['location']</h6>
+            <h6>serverResponse.trails[0]['length']</h6>
+            <h6>serverResponse.trails[0]['url']</h6>
+        </div>
+        <div>
+            <h2>Conditions</h2>
+            <h6>serverResponse.trails[0]['conditionStatus']</h6>
+            <h6>serverResponse.trails[0]['conditionDetails']</h6>
+            <h6>Updated: serverResponse.trails[0]['conditionDate']</h6>
+        </div>
+    </div>
+    <a href="serverResponse.trails[0]['url']"></a>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hike Track Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    {% load static %}
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: green;">
+                <a class="navbar-brand" href="/home">Hike Track</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/mytrip">MyTrips</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/trip">AllTrips</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/donation">Donations</a>
+                    </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                      <a href="/logout">LOGOUT</a>
+                  </form>
+                </div>
+              </nav>
+        <div style="display: inline-block; vertical-align:top; margin: 10px;">
+            <table style="height:100%;">
+                <thead>
+                    <th>CREW</th>
+                </thead>
+                <tbody>
+                    {% for crew in crews %}
+                    <tr>
+                        <td>{{crew.first_name}} {{crew.last_name}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <input id="trail_id" type="hidden" value="{{trip.trail_api_id}}">
+        <div style="display: inline-block;" id="trail_detail">
+        </div>
+        <div style="margin-left:100px;">
+            <form enctype="multipart/form-data" action="/addpic/{{trip.id}}" class="form-group" method='post'>
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class='col'>
+                        <input class="form-control" type="file" name="picture" id="picture">
+                    </div>
+                    <div class='col'>
+                        <input class="form-control" type="text" name="caption" id="caption" placeholder="CAPTION">
+                    </div>
+                </div>
+                <br>
+                <input class="btn btn-primary" type="submit" value="Upload">
+            </form>
+        </div>
+        <div style="display: inline-block; margin-left: 100px;">
+            <h3>TRIP PICTURES</h3>
+        </div>
+        <div style="margin-left: 100px;">
+            <table class='table'>
+                <thead>
+                    <th>Poster</th>
+                    <th></th>
+                    <th>Caption</th>
+                </thead>
+                <tbody>
+                    {% if pictures %}
+                    {% for picture in pictures %}
+                    <tr>
+                        <td>{{picture.uploader.first_name}} {{picture.uploader.last_name}}</td>
+                        <td><img style="width: 300px;" src="/media/{{picture.picture}}" alt="FAIL"></td>
+                        <td>{{picture.caption}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="{% static 'main_app/detail.js' %}"></script>
+</html>

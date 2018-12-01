@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ALL TRIPS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    {% load static %}
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: green;">
+            <a class="navbar-brand" href="/home">Hike Track</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/mytrip">MyTrips</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/trip">AllTrips</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/donation">Donations</a>
+                </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="/logout">LOGOUT</a>
+                </form>
+            </div>
+        </nav>
+        <br>
+        <table class="table">
+                <thead>
+                    <th>Planner</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Details</th>
+                    <th>Join</th>
+                </thead>
+                <tbody>
+                    {% if trips %}
+                    {% for trip in trips %}
+                    <tr>
+                        <td>{{trip.planner.first_name}}</td>
+                        <td>{{trip.comment}}</td>
+                        <td>{{trip.start_date}}</td>
+                        <td>{{trip.end_date}}</td>
+                        <td><a href="trip/{{trip.id}}">See!</a></td>
+                        <td><a href="jointrip/{{trip.id}}">+</a></td>
+                    {% endfor %}
+                    {% endif %}
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    <script type="text/javascript" src="{% static 'main_app/main.js' %}"></script>
+</body>
+</html>
